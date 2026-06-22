@@ -5,7 +5,7 @@
 set -euo pipefail
 
 ZONE="${1:?Usage: $0 <zoneName>}"
-BASE_URL="https://backend.astra.namefi.io/v-next"
+BASE_URL="${NAMEFI_API_BASE_URL:-https://api.namefi.io/v-next}"
 
 if [[ -z "${NAMEFI_API_KEY:-}" ]] && [[ -f ".env" ]]; then
   # shellcheck disable=SC1091
