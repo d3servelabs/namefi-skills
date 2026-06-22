@@ -6,7 +6,7 @@ set -euo pipefail
 
 DOMAIN="${1:?Usage: $0 <domain> [durationInYears]}"
 DURATION="${2:-1}"
-BASE_URL="https://backend.astra.namefi.io/v-next"
+BASE_URL="${NAMEFI_API_BASE_URL:-https://api.namefi.io/v-next}"
 
 # Load .env if present and NAMEFI_API_KEY not already set
 if [[ -z "${NAMEFI_API_KEY:-}" ]] && [[ -f ".env" ]]; then

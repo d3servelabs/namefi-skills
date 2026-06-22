@@ -1,72 +1,38 @@
-Register a domain
+# namefi-skills
 
-curl https://backend.astra.namefi.io/v-next/orders/register-domain \
-  --request POST \
-  --header 'Content-Type: application/json' \
-  --header 'Accept: application/json' \
-  --header 'x-api-key: $NAMEFI_API_KEY'
-  ' \
-  --data '{
-  "normalizedDomainName": "$DOMAIN_NAME",
-  "durationInYears": 1
-}'
+Agent skills for [Namefi](https://namefi.io) — register traditional domains as
+NFTs and manage their DNS, from an AI agent or the command line.
 
-Check order status
+## Skills
 
-curl 'https://backend.astra.namefi.io/v-next/orders/{orderId}' \
-  --header 'Accept: application/json' \
-  --header 'x-api-key: $NAMEFI_API_KEY'
+| Skill | What it's for |
+|-------|---------------|
+| [`skills/namefi-domain-api`](skills/namefi-domain-api/SKILL.md) | Drive the Namefi REST API directly with small `curl` helper scripts — register a domain, poll order status, and CRUD DNS records with an API key. |
+| [`skills/namefi-mcp`](skills/namefi-mcp/SKILL.md) | Connect to the Namefi **MCP server** (`/mcp`, Streamable HTTP) so an MCP-capable client gets every `/v-next` operation as a tool. |
 
+Both cover the same operations; pick REST/curl (`namefi-domain-api`) or MCP
+(`namefi-mcp`) depending on your client.
 
-GET Dns Records
-curl 'https://backend.astra.namefi.io/v-next/dns/records?zoneName=merry-christ-imas.0x.city' \
-  --header 'Accept: application/json' \
-  --header 'x-api-key: $NAMEFI_API_KEY'
+## Prerequisites
 
-Create DNS Records
-curl https://backend.astra.namefi.io/v-next/dns/records/batch \
-  --request POST \
-  --header 'Content-Type: application/json' \
-  --header 'Accept: application/json' \
-  --header 'x-api-key: $NAMEFI_API_KEY' \
-  --data '{
-  "records": [
-    {
-      "type": "TXT",
-      "name": "@",
-      "ttl": 60,
-      "rdata": "Test"
-    }
-  ],
-  "zoneName": "merry-christ-imas.0x.city"
-}'
+- A Namefi API key — generate one at https://namefi.io/api-key (must belong to
+  the wallet that owns the domain). Export it as `NAMEFI_API_KEY` or put it in a
+  local `.env`.
+- The REST scripts need `curl` and `jq`.
 
-DELETE
+```bash
+export NAMEFI_API_KEY=nfk_your_key
+# optional — endpoints default to production (https://api.namefi.io/v-next):
+export NAMEFI_API_BASE_URL=https://api.namefi.io/v-next   # or the dev backend
+```
 
-curl https://backend.astra.namefi.io/v-next/dns/records/batch \
-  --request DELETE \
-  --header 'Content-Type: application/json' \
-  --header 'Accept: application/json' \
-  --header 'x-api-key: $NAMEFI_API_KEY' \
-  --data '{
-  "recordsIds": [
-    "",
-  ],
-  "zoneName": "merry-christ-imas.0x.city"
-}'
+## Environments
 
-Update DNS Record
-** fill recordsId
+Everything defaults to **production** (`https://api.namefi.io/v-next`). To target
+the dev backend, set `NAMEFI_API_BASE_URL=https://backend.astra.namefi.io/v-next`
+(REST), or use the dev MCP URL (see the `namefi-mcp` skill).
 
-curl 'https://backend.astra.namefi.io/v-next/dns/records/{recordId}' \
-  --request PUT \
-  --header 'Content-Type: application/json' \
-  --header 'Accept: application/json' \
-  --header 'x-api-key: $NAMEFI_API_KEY' \
-  --data '{
-  "zoneName": "merry-christ-imas.0x.city",
-  "type": "TXT",
-  "name": "@",
-  "rdata": "asdfgh",
-  "ttl": 60
-}'
+## Reference
+
+- Machine-readable agent guide: https://namefi.io/llms.txt
+- OpenAPI: https://api.namefi.io/v-next/openapi/doc

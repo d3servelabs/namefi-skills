@@ -14,7 +14,7 @@ TYPE="${2:?Missing <type> (e.g. A, CNAME, TXT, MX)}"
 NAME="${3:?Missing <name> (use @ for apex)}"
 RDATA="${4:?Missing <rdata>}"
 TTL="${5:-300}"
-BASE_URL="https://backend.astra.namefi.io/v-next"
+BASE_URL="${NAMEFI_API_BASE_URL:-https://api.namefi.io/v-next}"
 
 if [[ -z "${NAMEFI_API_KEY:-}" ]] && [[ -f ".env" ]]; then
   # shellcheck disable=SC1091
