@@ -22,15 +22,9 @@ Both cover the same operations; pick REST/curl (`namefi-domain-api`) or MCP
 
 ```bash
 export NAMEFI_API_KEY=nfk_your_key
-# optional — endpoints default to production (https://api.namefi.io/v-next):
-export NAMEFI_API_BASE_URL=https://api.namefi.io/v-next   # or the dev backend
 ```
 
-## Environments
-
-Everything defaults to **production** (`https://api.namefi.io/v-next`). To target
-the dev backend, set `NAMEFI_API_BASE_URL=https://backend.astra.namefi.io/v-next`
-(REST), or use the dev MCP URL (see the `namefi-mcp` skill).
+All endpoints use production (`https://api.namefi.io/v-next`).
 
 ## Reference
 

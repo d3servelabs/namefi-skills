@@ -13,13 +13,9 @@ registration, DNS, domain config, outbound, balance, and EIP-712/SIWE helpers.
 Prefer this skill when your client speaks MCP. Prefer `namefi-domain-api` when you
 want plain `curl` scripts.
 
-## Endpoints
+## Endpoint
 
-| Environment | MCP URL |
-|-------------|---------|
-| Production  | `https://api.namefi.io/mcp` |
-| Dev / Astra | `https://backend.astra.namefi.io/mcp` |
-| Local       | `http://localhost:3000/mcp` (see "Run the server locally") |
+Connect at `https://api.namefi.io/mcp` over the Streamable HTTP transport.
 
 ## Add the server to a client
 
@@ -102,18 +98,6 @@ curl -s -X POST "$URL" \
 Responses use SSE framing (`event: message` / `data: {…}`). Inspect interactively
 with `npx @modelcontextprotocol/inspector` (transport: Streamable HTTP, URL: the
 `/mcp` endpoint).
-
-## Run the server locally (development)
-
-From the `namefi-astra` checkout (the MCP server lives in `apps/backend`):
-
-```bash
-infisical run --env=dev -- env PORT=3000 ENVIRONMENT=local bun --cwd=apps/backend dev:internal
-# → MCP at http://localhost:3000/mcp
-```
-
-A missing local Temporal server prints a harmless "Temporal search attributes
-validation failed" warning at boot; it doesn't affect the MCP endpoint.
 
 ## Notes
 
