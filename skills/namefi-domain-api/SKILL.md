@@ -5,17 +5,13 @@ description: Interact with the Namefi API to register domains, manage DNS record
 
 # Namefi Domain API
 
-Manage domains and DNS via the Namefi REST API. Defaults to **production**
-(`https://api.namefi.io/v-next`); override with `NAMEFI_API_BASE_URL` (e.g. the
-dev backend `https://backend.astra.namefi.io/v-next`).
+Manage domains and DNS via the Namefi REST API at `https://api.namefi.io/v-next`.
 
 ## Prerequisites
 
 ```bash
 export NAMEFI_API_KEY=<your-api-key>            # or set in .env
 export DOMAIN_NAME=example.com
-# optional — defaults to prod:
-export NAMEFI_API_BASE_URL=https://api.namefi.io/v-next
 ```
 
 Account must have NFSC balance before registering. See [Managing Your Balance](https://docs.namefi.io/docs/03-getting-started/02-your-balance).
