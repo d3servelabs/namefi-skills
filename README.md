@@ -13,6 +13,34 @@ NFTs and manage their DNS, from an AI agent or the command line.
 Both cover the same operations; pick REST/curl (`namefi-domain-api`) or MCP
 (`namefi-mcp`) depending on your client.
 
+## Use this repo as a Claude plugin
+
+This repo is also the **Namefi** plugin for Claude (`name: namefi`). The plugin
+contains the two skills above and two MCP servers:
+
+```
+.claude-plugin/plugin.json   plugin manifest
+.mcp.json                    MCP servers the plugin connects
+skills/                      the two skills
+```
+
+| MCP server | URL | Sign-in |
+|------------|-----|---------|
+| `namefi-instant` | `https://api.namefi.io/mcp-instant` | None. Domain availability and DNS lookups only. |
+| `namefi` | `https://api.namefi.io/mcp` | OAuth. Claude opens the Namefi sign-in page the first time you use a tool. |
+
+To test the plugin locally, run `claude --plugin-dir .` in the repo root.
+
+## Data the plugin sends
+
+- The MCP servers send tool calls only to `api.namefi.io`.
+- The `namefi-domain-api` scripts send requests only to
+  `https://api.namefi.io/v-next`, or to `NAMEFI_API_BASE_URL` when you set it.
+- The scripts read `NAMEFI_API_KEY` from your environment. When the variable is
+  not set, the scripts read it from a `.env` file in the current directory. The
+  scripts send the key only in the `x-api-key` header to the Namefi API.
+- The plugin has no hooks and runs nothing in the background.
+
 ## Prerequisites
 
 - A Namefi API key — generate one at https://namefi.io/api-key (must belong to

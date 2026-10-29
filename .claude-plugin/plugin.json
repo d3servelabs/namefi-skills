@@ -1,0 +1,14 @@
+{
+  "name": "namefi",
+  "displayName": "Namefi",
+  "version": "0.1.0",
+  "description": "Search, register, and manage domains and DNS with Namefi. Skills plus the Namefi MCP servers.",
+  "author": {
+    "name": "D3SERVE LABS, Inc.",
+    "url": "https://namefi.io"
+  },
+  "homepage": "https://namefi.io/llms.txt",
+  "repository": "https://github.com/d3servelabs/namefi-skills",
+  "license": "Apache-2.0",
+  "keywords": ["domains", "dns", "domain-registration", "namefi"]
+}
