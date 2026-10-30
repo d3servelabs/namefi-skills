@@ -20,6 +20,7 @@ contains the two skills above and two MCP servers:
 
 ```
 .claude-plugin/plugin.json   plugin manifest
+.claude-plugin/icon.png      listing icon (512 x 512 PNG)
 .mcp.json                    MCP servers the plugin connects
 skills/                      the two skills
 ```
