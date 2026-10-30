@@ -23,6 +23,7 @@ contains the two skills above and two MCP servers:
 .claude-plugin/icon.png      listing icon (512 x 512 PNG)
 .mcp.json                    MCP servers the plugin connects
 skills/                      the two skills
+docs/connector-app/          directory carousel screenshots of the MCP App
 ```
 
 | MCP server | URL | Sign-in |
@@ -31,6 +32,24 @@ skills/                      the two skills
 | `namefi` | `https://api.namefi.io/mcp` | OAuth. Before you use its tools, run `/mcp` in Claude Code, select `namefi`, and sign in. |
 
 To test the plugin locally, run `claude --plugin-dir .` in the repo root.
+
+## The no-login connector shows a domain results card in Claude
+
+`namefi-instant` (`https://api.namefi.io/mcp-simple`, directory listing
+`namefi-io`) has an MCP App. When Claude calls `searchAvailability`, Claude web
+and Desktop show the results as a card. The card source is in
+[`namefi-astra/packages/mcp-apps`](https://github.com/d3servelabs/namefi-astra/tree/main/packages/mcp-apps).
+
+These four screenshots are the directory carousel images. Each one is a real
+Claude response from 2026-10-30 (UTC), cropped to the card. Availability is live
+data, so the same prompt can show other results later.
+
+| Screenshot | Prompt |
+|------------|--------|
+| ![Coffee subscription names, 3 available and 5 taken](docs/connector-app/carousel-1-brainstorm.png) | Brainstorm 8 names for a coffee subscription startup and check which .com domains are free. |
+| ![brewloop.ai and brewloop.co selected, with Proceed to purchase](docs/connector-app/carousel-2-selected.png) | Check brewloop.com, brewloop.ai and brewloop.co for me. |
+| ![lumen studio across 5 TLDs, 1 available](docs/connector-app/carousel-3-many-tlds.png) | Check "lumen studio" as .com, .io, .ai, .studio and .design. |
+| ![Trail-running names across .com, .app and .run, 4 available](docs/connector-app/carousel-4-trail-names.png) | Suggest 3 short names for a trail-running app and check each as .com, .app and .run. |
 
 ## Data the plugin sends
 
