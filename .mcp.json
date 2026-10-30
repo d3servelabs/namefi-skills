@@ -2,7 +2,7 @@
   "mcpServers": {
     "namefi-instant": {
       "type": "http",
-      "url": "https://api.namefi.io/mcp-instant"
+      "url": "https://api.namefi.io/mcp-simple"
     },
     "namefi": {
       "type": "http",

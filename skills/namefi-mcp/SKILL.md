@@ -54,7 +54,7 @@ methods:
   that owns the domain).
 
 For availability and DNS lookups without sign-in, connect the public server at
-`https://api.namefi.io/mcp-instant` instead. That server has only two tools,
+`https://api.namefi.io/mcp-simple` instead. That server has only two tools,
 `searchAvailability` and `dnsOverHttp`. The tool catalog below is for `/mcp`.
 
 - **Send the key as the `x-api-key` connection header** (above). It authorizes all
