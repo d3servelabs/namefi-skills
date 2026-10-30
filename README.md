@@ -20,13 +20,14 @@ contains the two skills above and two MCP servers:
 
 ```
 .claude-plugin/plugin.json   plugin manifest
+.claude-plugin/icon.png      listing icon (512 x 512 PNG)
 .mcp.json                    MCP servers the plugin connects
 skills/                      the two skills
 ```
 
 | MCP server | URL | Sign-in |
 |------------|-----|---------|
-| `namefi-instant` | `https://api.namefi.io/mcp-instant` | None. Domain availability and DNS lookups only. |
+| `namefi-instant` | `https://api.namefi.io/mcp-simple` | None. Domain availability and DNS lookups only. |
 | `namefi` | `https://api.namefi.io/mcp` | OAuth. Before you use its tools, run `/mcp` in Claude Code, select `namefi`, and sign in. |
 
 To test the plugin locally, run `claude --plugin-dir .` in the repo root.

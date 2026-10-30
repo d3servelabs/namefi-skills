@@ -8,7 +8,9 @@
     "url": "https://namefi.io"
   },
   "homepage": "https://namefi.io/llms.txt",
+  "privacyPolicyUrl": "https://namefi.io/privacy",
   "repository": "https://github.com/d3servelabs/namefi-skills",
   "license": "Apache-2.0",
+  "icon": ".claude-plugin/icon.png",
   "keywords": ["domains", "dns", "domain-registration", "namefi"]
 }
