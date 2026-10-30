@@ -27,7 +27,7 @@ skills/                      the two skills
 | MCP server | URL | Sign-in |
 |------------|-----|---------|
 | `namefi-instant` | `https://api.namefi.io/mcp-instant` | None. Domain availability and DNS lookups only. |
-| `namefi` | `https://api.namefi.io/mcp` | OAuth. Claude opens the Namefi sign-in page the first time you use a tool. |
+| `namefi` | `https://api.namefi.io/mcp` | OAuth. Before you use its tools, run `/mcp` in Claude Code, select `namefi`, and sign in. |
 
 To test the plugin locally, run `claude --plugin-dir .` in the repo root.
 
@@ -36,6 +36,8 @@ To test the plugin locally, run `claude --plugin-dir .` in the repo root.
 - The MCP servers send tool calls only to `api.namefi.io`.
 - The `namefi-domain-api` scripts send requests only to
   `https://api.namefi.io/v-next`, or to `NAMEFI_API_BASE_URL` when you set it.
+  When you set `NAMEFI_API_BASE_URL`, that URL receives your API key. Set it
+  only to a URL that you trust.
 - The scripts read `NAMEFI_API_KEY` from your environment. When the variable is
   not set, the scripts read it from a `.env` file in the current directory. The
   scripts send the key only in the `x-api-key` header to the Namefi API.
