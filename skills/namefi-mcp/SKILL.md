@@ -45,9 +45,17 @@ Then list tools to confirm the connection (~46 tools expected).
 
 ## Authentication
 
-Get an API key at https://namefi.io/api-key (must belong to the wallet that owns
-the domain). Read-only tools (`checkAvailability`, `getDnsRecords`,
-`isDomainParked`, …) need no auth.
+`/mcp` authenticates every request, read-only tools included. Use one of two
+methods:
+
+- **OAuth.** Connect without a key. The client discovers the OAuth flow from the
+  server's `WWW-Authenticate` challenge and opens the Namefi sign-in page.
+- **API key.** Get a key at https://namefi.io/api-key (must belong to the wallet
+  that owns the domain).
+
+For availability and DNS lookups without sign-in, connect the public server at
+`https://api.namefi.io/mcp-instant` instead. That server has only two tools,
+`searchAvailability` and `dnsOverHttp`. The tool catalog below is for `/mcp`.
 
 - **Send the key as the `x-api-key` connection header** (above). It authorizes all
   tool calls, so the secret stays in client config — not in the model's context.
@@ -74,9 +82,8 @@ the domain). Read-only tools (`checkAvailability`, `getDnsRecords`,
 Every tool takes a wrapper `{ headers?, body: { payload } }`:
 
 ```jsonc
-// no auth needed
+// auth (API key or OAuth token) is on the connection — body is enough
 { "body": { "payload": { "domain": "example.com" } } }            // checkAvailability
-// authenticated (key already on the connection — body is enough)
 { "body": { "payload": { "normalizedDomainName": "example.com", "durationInYears": 1 } } } // registerDomain
 ```
 
@@ -87,10 +94,10 @@ terminal status.
 
 ```bash
 URL=https://api.namefi.io/mcp
-curl -s -X POST "$URL" \
+curl -s -X POST "$URL" -H "x-api-key: $NAMEFI_API_KEY" \
   -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
-curl -s -X POST "$URL" \
+curl -s -X POST "$URL" -H "x-api-key: $NAMEFI_API_KEY" \
   -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
   -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"checkAvailability","arguments":{"body":{"payload":{"domain":"example.com"}}}}}'
 ```
