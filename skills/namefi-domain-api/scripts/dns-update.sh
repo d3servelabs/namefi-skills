@@ -14,12 +14,7 @@ TYPE="${3:?Missing <type>}"
 NAME="${4:?Missing <name>}"
 RDATA="${5:?Missing <rdata>}"
 TTL="${6:-300}"
-BASE_URL="${NAMEFI_API_BASE_URL:-https://api.namefi.io/v-next}"
-
-if [[ -z "${NAMEFI_API_KEY:-}" ]] && [[ -f ".env" ]]; then
-  # shellcheck disable=SC1091
-  source .env
-fi
+BASE_URL="https://api.namefi.io/v-next"
 
 : "${NAMEFI_API_KEY:?NAMEFI_API_KEY must be set}"
 

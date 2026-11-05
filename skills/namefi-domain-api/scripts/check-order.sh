@@ -7,13 +7,8 @@ set -euo pipefail
 
 ORDER_ID="${1:?Usage: $0 <orderId> [--poll]}"
 POLL="${2:-}"
-BASE_URL="${NAMEFI_API_BASE_URL:-https://api.namefi.io/v-next}"
+BASE_URL="https://api.namefi.io/v-next"
 TERMINAL_STATUSES="SUCCEEDED FAILED CANCELLED PARTIALLY_COMPLETED"
-
-if [[ -z "${NAMEFI_API_KEY:-}" ]] && [[ -f ".env" ]]; then
-  # shellcheck disable=SC1091
-  source .env
-fi
 
 : "${NAMEFI_API_KEY:?NAMEFI_API_KEY must be set}"
 
