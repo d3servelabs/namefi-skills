@@ -55,19 +55,15 @@ data, so the same prompt can show other results later.
 
 - The MCP servers send tool calls only to `api.namefi.io`.
 - The `namefi-domain-api` scripts send requests only to
-  `https://api.namefi.io/v-next`, or to `NAMEFI_API_BASE_URL` when you set it.
-  When you set `NAMEFI_API_BASE_URL`, that URL receives your API key. Set it
-  only to a URL that you trust.
-- The scripts read `NAMEFI_API_KEY` from your environment. When the variable is
-  not set, the scripts read it from a `.env` file in the current directory. The
-  scripts send the key only in the `x-api-key` header to the Namefi API.
+  `https://api.namefi.io/v-next`. The URL is fixed in each script.
+- The scripts read `NAMEFI_API_KEY` from your environment and read no files. They
+  send the key only in the `x-api-key` header to the Namefi API.
 - The plugin has no hooks and runs nothing in the background.
 
 ## Prerequisites
 
 - A Namefi API key — generate one at https://namefi.io/api-key (must belong to
-  the wallet that owns the domain). Export it as `NAMEFI_API_KEY` or put it in a
-  local `.env`.
+  the wallet that owns the domain). Export it as `NAMEFI_API_KEY`.
 - The REST scripts need `curl` and `jq`.
 
 ```bash

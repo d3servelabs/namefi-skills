@@ -10,7 +10,7 @@ Manage domains and DNS via the Namefi REST API at `https://api.namefi.io/v-next`
 ## Prerequisites
 
 ```bash
-export NAMEFI_API_KEY=<your-api-key>            # or set in .env
+export NAMEFI_API_KEY=<your-api-key>         
 export DOMAIN_NAME=example.com
 ```
 
@@ -78,7 +78,7 @@ bash scripts/dns-delete.sh example.com <recordId1> <recordId2>
 - Orders are **asynchronous** — always poll `check-order.sh` after registering.
 - `durationInYears` defaults to `1` (max 10).
 - DNS record `name` uses `@` for the zone apex.
-- All scripts read `NAMEFI_API_KEY` from the environment (or `.env` via `source .env`).
+- All scripts read `NAMEFI_API_KEY` from the environment and send it only to `api.namefi.io`.
 
 ## Additional resources
 
